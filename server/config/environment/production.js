@@ -1,24 +1,21 @@
 'use strict';
 
-// Production specific configuration
-// =================================
 module.exports = {
-  // Server IP
+  // Server IP todo: investigate
   ip:       process.env.OPENSHIFT_NODEJS_IP ||
             process.env.IP ||
             undefined,
 
-  // Server port
+  // Server port todo: investigate
   port:     process.env.OPENSHIFT_NODEJS_PORT ||
             process.env.PORT ||
             8080,
 
-  // MongoDB connection options
-  mongo: {
-    uri:    process.env.MONGOLAB_URI ||
-            process.env.MONGOHQ_URL ||
-            process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
-            'mongodb://localhost/mrcabdriver'
-  },
-  seedDB: true
+    mongo: {
+        uri: process.env.MONGOHQ_URL
+    },
+    redis: {
+        uri: process.env.REDISCLOUD_URL
+    },
+    seedDB: true
 };

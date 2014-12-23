@@ -1,4 +1,3 @@
-// Generated on 2014-12-08 using generator-angular-fullstack 2.0.13
 'use strict';
 
 module.exports = function (grunt) {
@@ -19,9 +18,6 @@ module.exports = function (grunt) {
     injector: 'grunt-asset-injector',
     buildcontrol: 'grunt-build-control'
   });
-
-  // Time how long tasks take. Can help when optimizing build times
-  require('time-grunt')(grunt);
 
   // Define the configuration for all the tasks
   grunt.initConfig({
