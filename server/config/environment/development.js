@@ -5,7 +5,8 @@ module.exports = {
         uri: 'mongodb://localhost:27017/mrcabdriver'
     },
     redis: {
-        uri: ''
+        port: '6379',
+        host: 'localhost'
     },
     seedDB: true
 };
