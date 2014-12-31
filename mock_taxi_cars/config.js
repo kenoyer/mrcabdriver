@@ -1,14 +1,12 @@
 'use strict';
 
 module.exports = {
-    redis: {
-        port: '6379',
-        host: 'localhost',
-        key: 'carLocations'
-    },
+    carsCount: 50,
+    updateInterval: 5, //seconds
     taxiCarsApi: {
-        host: 'localhost',
+        protocol: 'http',
+        hostname: 'localhost',
         port: '9000',
-        path: '/api/taxi-cars/update-location'
+        pathname: '/api/taxi-cars/update-location'
     }
 };
