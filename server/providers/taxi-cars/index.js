@@ -8,6 +8,7 @@ var config = require('../../config/environment');
 var redisClient = redis.createClient(config.redis.port, config.redis.host);
 
 var LOCATION_KEY = 'carLocations';
+var ROUTE_KEY = 'carRoutes';
 var BIT_DEPTH = 52;
 var LN_2 = Math.log(2);
 
@@ -67,6 +68,21 @@ exports.findNearbyCars = function (location, radius, callback) {
             });
         }
 
+        //return route info along with position for debugging
+        if (config.env === 'development') {
+            redisClient.hgetall(ROUTE_KEY, function (err, obj) {
+                if (!err && obj) {
+                    _.forEach(result, function (item) {
+                        if (obj[item.carId]) {
+                            item.route = JSON.parse(obj[item.carId]);
+                        }
+                    });
+                }
+                callback(null, result);
+            });
+            return;
+        }
+
         callback(null, result);
     });
 };
@@ -76,6 +92,12 @@ exports.updateCarLocation = function (carId, newLocation, callback) {
 
     //todo: add expiration to the locations
     redisClient.zadd([LOCATION_KEY, intGeoHash, carId], function (err, response) {
+        callback(err);
+    });
+};
+
+exports.setCarRoute = function (carId, routeLatLongs, callback) {
+    redisClient.hset([ROUTE_KEY, carId, routeLatLongs], function (err, response) {
         callback(err);
     });
 };

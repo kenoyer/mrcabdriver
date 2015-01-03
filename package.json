@@ -15,6 +15,7 @@
     "geolib": "^2.0.14",
     "grunt-cli": "^0.1.13",
     "jsonwebtoken": "^0.3.0",
+    "less-middleware": "^1.0.4",
     "lodash": "~2.4.1",
     "method-override": "~1.0.0",
     "mongoose": "~3.8.8",

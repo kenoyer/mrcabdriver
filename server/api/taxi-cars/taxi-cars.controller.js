@@ -5,7 +5,7 @@ var geolib = require('geolib');
 var taxiCarsProvider = require('../../providers/taxi-cars');
 
 //todo: get from config
-var SEARCH_RADIUS = 2500;
+var SEARCH_RADIUS = 20000;
 
 function isValidLocation(latitude, longitude) {
     return _.isFinite(latitude) && _.isFinite(longitude) &&
@@ -64,6 +64,22 @@ exports.updateLocation = function (req, res) {
             return res.json(500, {
                 'status': 'error',
                 'message': 'Failed to update location'
+            });
+        }else{
+            return res.json({
+                'status': 'ok'
+            });
+        }
+    });
+};
+
+//todo: debug only
+exports.setRoute = function (req, res) {
+    taxiCarsProvider.setCarRoute(req.body.carId, req.body.route, function (err) {
+        if (err) {
+            return res.json(500, {
+                'status': 'error',
+                'message': 'Failed to set route'
             });
         }else{
             return res.json({
