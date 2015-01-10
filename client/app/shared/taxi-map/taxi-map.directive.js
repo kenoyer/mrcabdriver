@@ -1,5 +1,5 @@
 angular.module('cab')
-    .directive('taxiMap', ['geoLocation', 'taxiCars', '$interval', function (geoLocation, taxiCars, $interval) {
+    .directive('taxiMap', ['geoLocation', 'taxiCars', '$interval', 'CONFIG', function (geoLocation, taxiCars, $interval, config) {
         return {
             restrict: 'EA',
             templateUrl: 'app/shared/taxi-map/taxi-map.html',
@@ -12,12 +12,35 @@ angular.module('cab')
                 }
 
                 geoLocation.get().then(function (location) {
+
+                    var locationLatLng = new google.maps.LatLng(location.latitude, location.longitude);
+
                     var map = new google.maps.Map(element[0], {
-                        center: { lat: location.latitude, lng: location.longitude },
-                        zoom: 11,
+                        center: locationLatLng,
+                        zoom: config.mapZoom,
                         disableDefaultUI: true,
                         zoomControl: true,
                         //todo: set Custom Styles too
+                    });
+
+                    var locationMarker = new google.maps.Marker({
+                        position: locationLatLng,
+                        icon: {
+                            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                            scale: 2
+                        },
+                        map: map
+                    });
+
+                    var radiusCircle = new google.maps.Circle({
+                        map: map,
+                        center: locationLatLng,
+                        radius: config.searchRadius,
+                        strokeColor: '#005500',
+                        strokeOpacity: 0.65,
+                        strokeWeight: 2,
+                        fillColor: '#33ee33',
+                        fillOpacity: 0.25
                     });
 
                     var markers = {};
@@ -47,7 +70,7 @@ angular.module('cab')
                                 }
 
                                 //visualize route info for debugging (when available)
-                                if (car.route) {
+                                if (config.debug && car.route) {
                                     var polylinePath = _.map(car.route, function(routePoint) {
                                         return new google.maps.LatLng(routePoint[0], routePoint[1]);
                                     });

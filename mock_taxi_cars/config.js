@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    carsCount: 30,
+    carsCount: 400,
     carVelocity: 60, //km/h
     updateInterval: 1, //seconds
     taxiCarsApi: {

@@ -5,7 +5,7 @@ var geolib = require('geolib');
 var taxiCarsProvider = require('../../providers/taxi-cars');
 
 //todo: get from config
-var SEARCH_RADIUS = 20000;
+var SEARCH_RADIUS = 4000;
 
 function isValidLocation(latitude, longitude) {
     return _.isFinite(latitude) && _.isFinite(longitude) &&
