@@ -1,0 +1,32 @@
+.authentication-form {
+    .authentication-form-header {
+        background-color: @backgroundColor;
+        text-align: center;
+        padding: 10px;
+
+        a {
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: underline;
+            &.disabled {
+                cursor: default;
+                text-decoration: none;
+            }
+        }
+    }
+    form {
+        padding: 20px;
+        text-align: center;
+
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin-top: 5px;
+            width: 65%;
+        }
+    }
+}

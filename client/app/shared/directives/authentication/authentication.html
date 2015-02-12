@@ -1,0 +1,17 @@
+<div class="authentication-form">
+    <div class="authentication-form-header">
+        <a ng-class="{disabled: page==='login'}" ng-click="signInClick()">Sign In</a>
+        <a ng-class="{disabled: page==='register'}" ng-click="signUpClick()">Sign Up</a>
+    </div>
+    <form ng-if="page === 'login'" name="login">
+        <input type="text" name="username" placeholder="Username" />
+        <input type="password" name="password" placeholder="Password"/>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+    <form ng-if="page === 'register'" name="register">
+        <input type="text" name="username" placeholder="Pick a username"/>
+        <input type="email" name="email" placeholder="Enter your email"/>
+        <input type="password" name="password" placeholder="Create a password"/>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+</div>

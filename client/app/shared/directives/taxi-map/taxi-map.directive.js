@@ -2,7 +2,7 @@ angular.module('cab')
     .directive('taxiMap', ['geoLocation', 'taxiCars', '$interval', 'CONFIG', function (geoLocation, taxiCars, $interval, config) {
         return {
             restrict: 'EA',
-            templateUrl: 'app/shared/taxi-map/taxi-map.html',
+            templateUrl: 'app/shared/directives/taxi-map/taxi-map.html',
             scrope: {},
             replace: true,
             link: function (scrope, element, attrs) {
