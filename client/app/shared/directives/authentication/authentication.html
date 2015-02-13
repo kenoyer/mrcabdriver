@@ -3,15 +3,48 @@
         <a ng-class="{disabled: page==='login'}" ng-click="signInClick()">Sign In</a>
         <a ng-class="{disabled: page==='register'}" ng-click="signUpClick()">Sign Up</a>
     </div>
-    <form ng-if="page === 'login'" name="login">
-        <input type="text" name="username" placeholder="Username" />
-        <input type="password" name="password" placeholder="Password"/>
+
+    <form ng-if="page === 'login'" name="loginForm" ng-class="{submitted: loginForm.$submitted}" novalidate>
+        <input type="text" name="username" placeholder="Username" ng-model="login.username" required="" />
+        <div class="validation-message" ng-show="(loginForm.$submitted || loginForm.username.$touched) && loginForm.username.$error.required">
+            Username is required.
+        </div>
+
+        <input type="password" name="password" placeholder="Password" ng-model="login.password" required=""/>
+        <div class="validation-message" ng-show="(loginForm.$submitted || loginForm.password.$touched) && loginForm.password.$error.required">
+            Password is required.
+        </div>
+
         <button type="submit" class="btn btn-primary">Sign In</button>
     </form>
-    <form ng-if="page === 'register'" name="register">
-        <input type="text" name="username" placeholder="Pick a username"/>
-        <input type="email" name="email" placeholder="Enter your email"/>
-        <input type="password" name="password" placeholder="Create a password"/>
+
+    <form ng-if="page === 'register'" name="registerForm" ng-class="{submitted: registerForm.$submitted}" novalidate>
+        <input type="text" name="username" placeholder="Pick a username" ng-model="register.username" required/>
+        <div class="validation-message" ng-show="(registerForm.$submitted || registerForm.username.$touched) && registerForm.username.$error.required">
+            Username is required.
+        </div>
+
+        <input type="email" name="email" placeholder="Enter your email" ng-model="register.email" required/>
+        <div class="validation-message" ng-show="(registerForm.$submitted || registerForm.email.$touched) && registerForm.email.$error.required">
+            Email is required.
+        </div>
+        <div class="validation-message" ng-show="(registerForm.$submitted || registerForm.email.$touched) && registerForm.email.$error.email">
+            Please enter a valid email address.
+        </div>
+
+        <input type="password" name="password" placeholder="Create a password" ng-model="register.password" required/>
+        <div class="validation-message" ng-show="(registerForm.$submitted || registerForm.password.$touched) && registerForm.password.$error.required">
+            Password is required.
+        </div>
+
+        <div class="password-confirmation" ng-show="registerForm.password.$dirty">
+            <input type="password" name="passwordConfirmation" placeholder="Confirm password" ng-model="register.passwordConfirmation" required/>
+            <div class="validation-message"
+                 ng-show="(registerForm.$submitted || registerForm.passwordConfirmation.$dirty) && registerForm.passwordConfirmation.$error.required">
+                Please confirm password.
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-primary">Sign Up</button>
     </form>
 </div>

@@ -28,5 +28,19 @@
             margin-top: 5px;
             width: 65%;
         }
+
+        .validation-message {
+            text-align: left;
+            font-size: 14px;
+            color: @validationErrorColor;
+            margin-top: -5px;
+            margin-bottom: 5px;
+        }
+
+        &.submitted {
+            input.ng-invalid {
+                background-color: @validationErrorBackgroundColor;
+            }
+        }
     }
 }

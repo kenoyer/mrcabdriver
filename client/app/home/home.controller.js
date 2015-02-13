@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('cab')
-    .controller('HomeController', [function() {
-
-
+    .controller('HomeController', ['$scope', function($scope) {
+            $scope.data = {
+                login: {},
+                register: {}
+            };
         }]
     );

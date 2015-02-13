@@ -4,13 +4,17 @@ angular.module('cab')
             restrict: "E",
             templateUrl: 'app/shared/directives/authentication/authentication.html',
             scope: {
-                page: '@'
+                page: '=',
+                login: '=',
+                register: '='
             },
             replace: true,
             link: function (scope, element, attrs) {
-
+                console.log(attrs);
+                console.log(scope);
             },
             controller: ['$scope', function ($scope) {
+                console.log($scope);
                 $scope.signInClick = function () {
                     $scope.page = 'login';
                 };
